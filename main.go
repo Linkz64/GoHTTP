@@ -12,7 +12,7 @@ var Port = ":5100"
 
 func main(){
 
-	http.HandleFunc("/",ServeFiles)
+	http.HandleFunc("/", ServeFiles)
 	fmt.Println("Serving @ : ", "http://127.0.0.1" + Port) // aka http://localhost
 	log.Fatal(http.ListenAndServe(Port, nil))
 }
@@ -30,8 +30,7 @@ func ServeFiles(w http.ResponseWriter, r *http.Request){
 		if path == "/"{
 
 			path = "./static/index.html"
-		}
-		else{
+		}else{
 
 			path = "." + path
 		}
@@ -46,13 +45,13 @@ func ServeFiles(w http.ResponseWriter, r *http.Request){
 
 		message := r.FormValue("message")
 
-		fmt.Println("----------------------------------")
+		fmt.Println("───────────────────────────────────────────────────────────") // - ─ ━
 		fmt.Println("Message from Client: ", message + "  |  " + curTime)
 		// respond to client's request
-		fmt.Fprintf(w, "Server: %s \n", message + "  |  " + curTime)
+		fmt.Fprintf(w, "Server response: %s \n", message + "  |  " + curTime)
 	
 	default:
-		fmt.Fprintf(w,"Request type other than GET or POST not supported")
+		fmt.Fprintf(w, "Request type other than GET or POST not supported")
 
 	}
 
